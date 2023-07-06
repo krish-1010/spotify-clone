@@ -23,6 +23,8 @@ const PlayerContent: React.FC<PlayerContentProps> = ({
   key,
 }) => {
   const player = usePlayer();
+  console.log(songUrl);
+
   const [volume, setVolume] = useState(1);
   const [isPlaying, setIsPlaying] = useState(false);
   const Icon = isPlaying ? BsPauseFill : BsPlayFill;
