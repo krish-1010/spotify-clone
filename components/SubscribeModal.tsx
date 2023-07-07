@@ -17,7 +17,7 @@ interface SubscribeModalProps {
 }
 
 const formatPrice = (price: Price) => {
-  const priceString = new Intl.NumberFormat("en-IN", {
+  const priceString = new Intl.NumberFormat("en-INR", {
     style: "currency",
     currency: price.currency,
     minimumFractionDigits: 0,
