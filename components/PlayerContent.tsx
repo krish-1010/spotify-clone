@@ -10,6 +10,8 @@ import Slider from "./Slider";
 import usePlayer from "@/hooks/usePlayer";
 import { useEffect, useState } from "react";
 import useSound from "use-sound";
+import Button from "./Button";
+import Seekbar from "./Seekbar";
 
 interface PlayerContentProps {
   song: Song;
@@ -85,6 +87,9 @@ const PlayerContent: React.FC<PlayerContentProps> = ({
       pause();
     }
   };
+  const handleSeek = (position: number) => {
+    sound.seek(position);
+  };
 
   const toggleMute = () => {
     if (volume === 0) {
@@ -127,7 +132,15 @@ const PlayerContent: React.FC<PlayerContentProps> = ({
           onClick={onPlayNext}
           className="text-neutral-400 cursor-pointer hover:text-white transition"
         />
+        {sound && (
+          <Seekbar
+            duration={sound.duration()}
+            sound={sound}
+            onSeek={handleSeek}
+          />
+        )}
       </div>
+
       <div className="hidden md:flex w-full justify-end pr-2">
         <div className="flex items-center gap-x-2 w-[120px]">
           <VolumeIcon
