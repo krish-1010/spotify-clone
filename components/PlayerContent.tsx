@@ -6,6 +6,7 @@ import LikeButton from "./LikeButton";
 import { BsPauseFill, BsPlayFill } from "react-icons/bs";
 import { AiFillStepBackward, AiFillStepForward } from "react-icons/ai";
 import { HiSpeakerWave, HiSpeakerXMark } from "react-icons/hi2";
+import { ImLoop, ImLoop2 } from "react-icons/im";
 import Slider from "./Slider";
 import usePlayer from "@/hooks/usePlayer";
 import { useEffect, useState } from "react";
@@ -29,6 +30,8 @@ const PlayerContent: React.FC<PlayerContentProps> = ({
 
   const [volume, setVolume] = useState(1);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [songended, setSongended] = useState(false);
+  const [loop, setLoop] = useState(false);
   const Icon = isPlaying ? BsPauseFill : BsPlayFill;
   const VolumeIcon = volume === 0 ? HiSpeakerXMark : HiSpeakerWave;
 
@@ -66,7 +69,7 @@ const PlayerContent: React.FC<PlayerContentProps> = ({
     onplay: () => setIsPlaying(true),
     onend: () => {
       setIsPlaying(false);
-      onPlayNext();
+      setSongended(true);
     },
     onpause: () => setIsPlaying(false),
     format: ["mp3"],
@@ -79,6 +82,18 @@ const PlayerContent: React.FC<PlayerContentProps> = ({
       sound?.unload();
     };
   }, [sound]);
+
+  useEffect(() => {
+    if (songended) {
+      if (loop) {
+        sound?.loop(true);
+        setIsPlaying(true);
+        sound?.play();
+      } else {
+        onPlayNext();
+      }
+    }
+  }, [songended, loop]);
 
   const handlePlay = () => {
     if (!isPlaying) {
@@ -97,6 +112,10 @@ const PlayerContent: React.FC<PlayerContentProps> = ({
     } else {
       setVolume(0);
     }
+  };
+
+  const toggleLoop = () => {
+    setLoop(!loop);
   };
 
   return (
@@ -138,6 +157,11 @@ const PlayerContent: React.FC<PlayerContentProps> = ({
             sound={sound}
             onSeek={handleSeek}
           />
+        )}
+        {loop ? (
+          <ImLoop color="green" size={30} onClick={toggleLoop} />
+        ) : (
+          <ImLoop color="white" size={30} onClick={toggleLoop} />
         )}
       </div>
 
