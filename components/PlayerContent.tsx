@@ -89,8 +89,10 @@ const PlayerContent: React.FC<PlayerContentProps> = ({
         sound?.loop(true);
         setIsPlaying(true);
         sound?.play();
+        setSongended(false);
       } else {
         onPlayNext();
+        setSongended(false);
       }
     }
   }, [songended, loop]);
