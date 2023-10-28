@@ -6,12 +6,11 @@ import LikeButton from "./LikeButton";
 import { BsPauseFill, BsPlayFill } from "react-icons/bs";
 import { AiFillStepBackward, AiFillStepForward } from "react-icons/ai";
 import { HiSpeakerWave, HiSpeakerXMark } from "react-icons/hi2";
-import { ImLoop, ImLoop2 } from "react-icons/im";
+import { ImLoop } from "react-icons/im";
 import Slider from "./Slider";
 import usePlayer from "@/hooks/usePlayer";
 import { useEffect, useState } from "react";
 import useSound from "use-sound";
-import Button from "./Button";
 import Seekbar from "./Seekbar";
 
 interface PlayerContentProps {

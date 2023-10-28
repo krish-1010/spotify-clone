@@ -1,7 +1,6 @@
 import * as RadixSlider from "@radix-ui/react-slider";
 import { useEffect, useRef, useState } from "react";
 import { Howl } from "howler";
-import { Song } from "@/types";
 
 interface SeekbarProps {
   duration: number;
