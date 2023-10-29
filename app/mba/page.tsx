@@ -3,6 +3,7 @@ import Header from "@/components/Header";
 import Image from "next/image";
 import PageContent from "../(site)/components/PageContent";
 import getSongs from "@/actions/getSongs";
+import Box from "@/components/Box";
 
 export const revalidate = 0;
 
