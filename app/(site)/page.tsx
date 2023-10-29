@@ -34,11 +34,10 @@ export default async function Home() {
           </h1>
         </div>
         {/* <PageContent songs={songs} /> */}
-        <Box>
-          <Link href={"/mba"}>
-            <Child1 />
-          </Link>
-        </Box>
+
+        <Link href={"/mba"}>
+          <Child1 />
+        </Link>
       </div>
     </div>
   );
